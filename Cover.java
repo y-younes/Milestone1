@@ -19,10 +19,7 @@ public int getCurrentHP() {
 	return currentHP;
 }
 public void setCurrentHP(int currentHP) {
-	if(currentHP<0)
-		this.currentHP=0;
-	else
-		this.currentHP = currentHP;
+	this.currentHP = currentHP;
 }
 public Point getLocation() {
 	return location;

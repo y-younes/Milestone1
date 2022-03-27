@@ -1,11 +1,18 @@
 package model.world;
 
+import java.awt.Point;
+
 import java.util.ArrayList;
 
-public class Champion extends Cover {
+import model.abilities.Ability;
+import model.effects.Effect;
+
+
+public class Champion{
 	private String name;
 	private int maxHP;
 	private int mana;
+	private int currentHP;
 	private int maxActionPointsPerTurn;
 	private int currentActionPoints;
 	private int attackRange;
@@ -14,21 +21,21 @@ public class Champion extends Cover {
 	private ArrayList<Ability> abilities;
 	private ArrayList<Effect> appliedEffects;
 	private Condition condition;
+	private Point location;
 
-}
+
 public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange,
 		int attackDamage){
-	super();
 	this.name=name;
 	this.maxHP=maxHP;
 	this.mana=mana;
 	maxActionPointsPerTurn=maxActions;
-	//currentActionPoints=maxActions;
+	currentActionPoints=maxActions;
 	this.speed=speed;
 	this.attackRange=attackRange;
 	this.attackDamage=attackDamage;
 	abilities=new ArrayList<>();
-	Effect=new ArrayList<>();
+	appliedEffects=new ArrayList<>();
 	this.condition=Condition.ACTIVE;
 	
 }
@@ -42,7 +49,7 @@ public Champion(String name, int maxHP, int mana, int maxActions, int speed, int
 
 
 
-
+//Getters and Setters
 public String getName() {
 	return name;
 }
@@ -52,6 +59,21 @@ public int getMaxHP() {
 public int getMana() {
 	return mana;
 }
+
+public void setMana(int mana) {
+	this.mana = mana;
+}
+
+
+
+public int getCurrentHP() {
+	return currentHP;
+}
+
+public void setCurrentHP(int currentHP) {
+	this.currentHP = currentHP;
+}
+
 public int getMaxActionPointsPerTurn() {
 	return maxActionPointsPerTurn;
 }
@@ -62,6 +84,13 @@ public void setMaxActionPointsPerTurn(int maxActionPointsPerTurn) {
 public int getCurrentActionPoints() {
 	return currentActionPoints;
 }
+
+public void setCurrentActionPoints(int currentActionPoints) {
+	this.currentActionPoints = currentActionPoints;
+}
+
+
+
 public int getAttackRange() {
 	return attackRange;
 }
@@ -101,6 +130,14 @@ public void setCondition(Condition condition) {
 	this.condition = condition;
 }
 
+public Point getLocation() {
+	return location;
+}
+
+public void setLocation(Point location) {
+	this.location = location;
+}
+
 
 
 
@@ -114,4 +151,3 @@ public void setCondition(Condition condition) {
 
 
 }
-
