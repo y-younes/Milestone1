@@ -1,0 +1,72 @@
+
+	public static void loadChampions (String filePath) throws IOException{
+		String line="";
+		BufferedReader br= null;
+		ArrayList<String> S=new ArrayList<>();
+		try {
+			br= new BufferedReader(new FileReader(filePath));
+			while( (line=br.readLine()) !=null){
+				S.add(line);
+			}
+		
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		/*finally{
+			br.close();
+		}*/
+		//Split the String line by comma
+		String[] parr;
+		String linee;
+		String type,name,ability1Name,ability2Name,ability3Name;
+		int maxHP, mana, actions,speed, attackRange, attackDamage;
+		for(int i=0;i<S.size();i++){
+			linee=S.get(i);
+			parr=line.split(",");
+			type=parr[0];
+			name=parr[1];
+			maxHP=Integer.parseInt(parr[2]);
+			mana=Integer.parseInt(parr[3]);
+			actions=Integer.parseInt(parr[4]);
+			speed=Integer.parseInt(parr[5]);
+			attackRange=Integer.parseInt(parr[6]);
+			attackDamage=Integer.parseInt(parr[7]);
+			ability1Name=parr[8];
+			ability2Name=parr[9];
+			ability3Name=parr[10];
+			
+			if(type.equals("A")){
+				availableChampions.add(new AntiHero(name,maxHP,mana,actions,speed,
+						attackRange,attackDamage));
+				
+			}
+			else
+				if(type.equals("H")){
+					availableChampions.add(new Hero(name,maxHP,mana,actions,speed,
+							attackRange,attackDamage));
+					
+					
+					
+				}
+				else{
+					availableChampions.add(new Villain(name,maxHP,mana,actions,speed,
+							attackRange,attackDamage));
+					
+				}
+			ArrayList<Ability> tmp=new ArrayList<>();
+			for(int j=0;j<availableAbilities.size();j++){
+				Ability a=availableAbilities.get(j);
+				if(a.getName().equals(ability1Name))
+					tmp.add(a);
+				else
+					if(a.getName().equals(ability2Name))
+						tmp.add(a);
+					else
+						if(a.getName().equals(ability3Name))
+							tmp.add(a);
+			}
+			availableChampions.get(i).setAbilities(tmp);
+			
+		}
